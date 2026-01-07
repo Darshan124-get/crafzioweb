@@ -118,9 +118,14 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            © {currentYear} CrafZio. All rights reserved.
-          </p>
+          <div className="flex flex-col gap-2">
+            <p className="text-sm text-muted-foreground">
+              © {currentYear} CrafZio. All rights reserved.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              MSME Registered | UDYAM Registration No: UDYAM-KR-25-0097087
+            </p>
+          </div>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <Link to="#" className="hover:text-primary transition-colors">
               Privacy Policy

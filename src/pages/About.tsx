@@ -1,4 +1,4 @@
-import { Target, Eye, Heart, Lightbulb, Users, Award } from "lucide-react";
+import { Target, Eye, Heart, Lightbulb, Users, Award, Shield } from "lucide-react";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import SectionHeading from "@/components/SectionHeading";
 import GlassCard from "@/components/GlassCard";
@@ -105,6 +105,38 @@ const About = () => {
               </GlassCard>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* MSME Registration */}
+      <section className="relative py-12 md:py-20">
+        <div className="container mx-auto px-4 md:px-6">
+          <GlassCard className="p-6 md:p-8 lg:p-10" glowColor="primary" hover3D={false}>
+            <div className="flex items-start gap-4 md:gap-6">
+              <div className="w-12 md:w-14 h-12 md:h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0">
+                <Shield className="w-6 md:w-7 h-6 md:h-7 text-primary" />
+              </div>
+              <div className="flex-1 space-y-4 md:space-y-5">
+                <div>
+                  <h3 className="font-display text-xl md:text-2xl font-bold mb-2 md:mb-3 gradient-text">
+                    UDYAM MSME Registered
+                  </h3>
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                    CrafZio is a UDYAM MSME registered digital services startup recognized by the Government of India.
+                    Our MSME registration ensures transparency, credibility, and compliance in every project we deliver.
+                  </p>
+                </div>
+                <div className="space-y-3 md:space-y-4 text-sm md:text-base text-muted-foreground">
+                  <p>
+                    We specialize in custom website and mobile app development for startups, businesses, and professionals.
+                  </p>
+                  <p className="font-medium text-foreground">
+                    Work with a registered, reliable, and growth-focused digital partner.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </GlassCard>
         </div>
       </section>
 
