@@ -80,7 +80,7 @@ const About = () => {
                 </p>
                 <p>
                   Today, we continue to push the boundaries of what's possible, exploring 
-                  new technologies like AI, IoT, and blockchain while staying true to our 
+                  new technologies like AI, and  while staying true to our 
                   core values of quality, innovation, and client success.
                 </p>
               </div>
