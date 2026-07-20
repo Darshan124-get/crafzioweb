@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Zap, Mail, Phone, MapPin, Github, Twitter, Linkedin, Instagram, Smartphone, X } from "lucide-react";
+import { Zap, Mail, Phone, MapPin } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -16,15 +16,6 @@ const Footer = () => {
     { name: "Application Development", path: "/services" },
     { name: "CRM Development", path: "/services" },
     { name: "E-Commerce Solutions", path: "/services" },
-  ];
-
-  const socials = [
-    { icon: Github, href: "https://github.com/CRAFZIO?view_as=public", label: "GitHub" },
-    // { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: X, href: "https://x.com/CrafZio", label: "X" },
-    { icon: Linkedin, href: "https://www.linkedin.com/company/crafzio/", label: "LinkedIn" },
-    { icon: Instagram, href: "https://www.instagram.com/crafzio.in?igsh=eDdjcWl5Z3gwbm5z", label: "Instagram" },
-    { icon: Smartphone, href: "https://play.google.com/store/apps/dev?id=9092775155164182538", label: "Play Store" },
   ];
 
   return (
@@ -48,18 +39,6 @@ const Footer = () => {
               Crafting digital experiences for the future. We transform ideas into 
               innovative solutions that drive business growth.
             </p>
-            <div className="flex items-center gap-3">
-              {socials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:glow-primary transition-all duration-300 hover:scale-110"
-                >
-                  <social.icon className="w-5 h-5" />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Quick Links */}

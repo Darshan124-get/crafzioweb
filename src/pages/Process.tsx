@@ -1,7 +1,5 @@
 import { Lightbulb, Target, Palette, Code2, TestTube, Rocket, ArrowRight } from "lucide-react";
-import AnimatedBackground from "@/components/AnimatedBackground";
-import SectionHeading from "@/components/SectionHeading";
-import GlassCard from "@/components/GlassCard";
+
 import Button from "@/components/Button";
 
 const steps = [
@@ -9,56 +7,59 @@ const steps = [
     number: "01",
     icon: Lightbulb,
     title: "Idea & Research",
-    description: "We start by understanding your vision, goals, and target audience. Deep market research helps us identify opportunities and challenges.",
-    color: "primary",
+    description: "Understand your vision, goals, and target audience through deep market research.",
+    bgClass: "bg-gradient-to-br from-violet-500 to-purple-600",
+    badgeBg: "bg-violet-400/30",
   },
   {
     number: "02",
     icon: Target,
     title: "Planning & Strategy",
-    description: "Creating a comprehensive roadmap with clear milestones, timelines, and deliverables. We define the technical architecture and project scope.",
-    color: "secondary",
+    description: "Create a clear roadmap with milestones, timelines, and technical architecture.",
+    bgClass: "bg-gradient-to-br from-blue-500 to-indigo-600",
+    badgeBg: "bg-blue-400/30",
   },
   {
     number: "03",
     icon: Palette,
     title: "UI/UX Design",
-    description: "Our designers craft beautiful, intuitive interfaces that align with your brand and delight your users at every interaction.",
-    color: "accent",
+    description: "Craft beautiful, intuitive interfaces aligned with your brand identity.",
+    bgClass: "bg-gradient-to-br from-pink-500 to-rose-600",
+    badgeBg: "bg-pink-400/30",
   },
   {
     number: "04",
     icon: Code2,
     title: "Development",
-    description: "Our expert developers bring the designs to life using cutting-edge technologies and best practices for clean, maintainable code.",
-    color: "primary",
+    description: "Build with cutting-edge technologies and clean, maintainable code.",
+    bgClass: "bg-gradient-to-br from-emerald-500 to-teal-600",
+    badgeBg: "bg-emerald-400/30",
   },
   {
     number: "05",
     icon: TestTube,
     title: "Testing & QA",
-    description: "Rigorous testing ensures your product is bug-free, secure, and performs flawlessly across all devices and platforms.",
-    color: "secondary",
+    description: "Rigorous testing ensures bug-free, secure performance across all devices.",
+    bgClass: "bg-gradient-to-br from-amber-500 to-orange-600",
+    badgeBg: "bg-amber-400/30",
   },
   {
     number: "06",
     icon: Rocket,
     title: "Launch & Support",
-    description: "We handle deployment, monitoring, and provide ongoing support to ensure your product continues to perform at its best.",
-    color: "accent",
+    description: "Deploy, monitor, and provide ongoing support for peak performance.",
+    bgClass: "bg-gradient-to-br from-cyan-500 to-blue-600",
+    badgeBg: "bg-cyan-400/30",
   },
 ];
 
 const Process = () => {
   return (
     <main className="page-transition pt-24">
-      <AnimatedBackground />
+
 
       {/* Hero Section */}
       <section className="relative py-12 md:py-20">
-        <div className="absolute top-1/3 left-1/4 w-48 md:w-96 h-48 md:h-96 bg-primary/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/3 right-1/4 w-48 md:w-96 h-48 md:h-96 bg-accent/20 rounded-full blur-[120px]" />
-
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20 mb-4 md:mb-6">
@@ -69,71 +70,61 @@ const Process = () => {
               <span className="gradient-text">Process</span>
             </h1>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-              A proven methodology that ensures successful project delivery 
-              from concept to launch and beyond.
+              A proven 6-step methodology that delivers successful projects 
+              from concept to launch.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Timeline */}
+      {/* Process Steps Grid */}
       <section className="relative py-12 md:py-20">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="relative">
-            {/* Vertical Line */}
-            <div className="absolute left-4 md:left-8 lg:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-secondary to-accent hidden md:block" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {steps.map((step, index) => (
+              <div
+                key={step.number}
+              >
+                <div className={`${step.bgClass} rounded-2xl p-6 md:p-8 text-white h-full flex flex-col shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] relative overflow-hidden`}>
+                  {/* Large faded step number in background */}
+                  <span className="absolute -top-4 -right-2 text-[8rem] font-display font-black text-white/10 leading-none select-none pointer-events-none">
+                    {step.number}
+                  </span>
 
-            <div className="space-y-8 md:space-y-12 lg:space-y-24">
-              {steps.map((step, index) => (
-                <div
-                  key={step.number}
-                  className={`relative flex flex-col md:flex-row items-start gap-6 md:gap-8 opacity-0 animate-fade-in-up ${
-                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
-                  style={{ animationDelay: `${index * 150}ms`, animationFillMode: "forwards" }}
-                >
-                  {/* Content */}
-                  <div className={`flex-1 w-full ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
-                    <GlassCard className="p-6 md:p-8 inline-block w-full md:max-w-md" glowColor={step.color as "primary" | "secondary" | "accent"}>
-                      <div className={`flex items-center gap-3 md:gap-4 mb-3 md:mb-4 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
-                        <div className={`w-10 md:w-12 h-10 md:h-12 rounded-xl flex items-center justify-center ${
-                          step.color === "primary" 
-                            ? "bg-primary/20" 
-                            : step.color === "secondary"
-                            ? "bg-secondary/20"
-                            : "bg-accent/20"
-                        }`}>
-                          <step.icon className={`w-5 md:w-6 h-5 md:h-6 ${
-                            step.color === "primary" 
-                              ? "text-primary" 
-                              : step.color === "secondary"
-                              ? "text-secondary"
-                              : "text-accent"
-                          }`} />
-                        </div>
-                        <span className={`font-display text-2xl md:text-4xl font-bold opacity-20 ${
-                          step.color === "primary" 
-                            ? "text-primary" 
-                            : step.color === "secondary"
-                            ? "text-secondary"
-                            : "text-accent"
-                        }`}>
-                          {step.number}
-                        </span>
-                      </div>
-                      <h3 className="font-display text-lg md:text-xl font-bold mb-2 md:mb-3">{step.title}</h3>
-                      <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{step.description}</p>
-                    </GlassCard>
+                  {/* Icon badge */}
+                  <div className={`w-12 h-12 rounded-xl ${step.badgeBg} flex items-center justify-center mb-5 relative z-10`}>
+                    <step.icon className="w-6 h-6 text-white" />
                   </div>
 
-                  {/* Center Dot */}
-                  <div className="hidden md:flex absolute left-4 md:left-8 lg:left-1/2 lg:-translate-x-1/2 w-3 md:w-4 h-3 md:h-4 rounded-full bg-gradient-to-br from-primary to-secondary glow-primary z-10" />
+                  {/* Step number + Title */}
+                  <div className="relative z-10 mb-3">
+                    <span className="text-xs font-semibold text-white/60 uppercase tracking-wider">Step {step.number}</span>
+                    <h3 className="font-display text-xl md:text-2xl font-bold mt-1">
+                      {step.title}
+                    </h3>
+                  </div>
 
-                  {/* Spacer */}
-                  <div className="flex-1 hidden md:block" />
+                  {/* Description */}
+                  <p className="text-sm text-white/80 leading-relaxed relative z-10 flex-1">
+                    {step.description}
+                  </p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Connector arrows between steps (visible on desktop) */}
+          <div className="hidden lg:flex items-center justify-center mt-12 gap-3">
+            {steps.map((step, index) => (
+              <div key={step.number} className="flex items-center gap-3">
+                <div className={`w-10 h-10 rounded-full ${step.bgClass} flex items-center justify-center text-white font-bold text-sm shadow-md`}>
+                  {step.number}
+                </div>
+                {index < steps.length - 1 && (
+                  <ArrowRight className="w-5 h-5 text-gray-300" />
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -141,7 +132,7 @@ const Process = () => {
       {/* CTA */}
       <section className="relative py-12 md:py-20">
         <div className="container mx-auto px-4 md:px-6 text-center">
-          <GlassCard className="p-8 md:p-12 lg:p-16 inline-block w-full max-w-2xl">
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 md:p-12 lg:p-16 max-w-2xl mx-auto">
             <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 px-2">
               Ready to Start Your{" "}
               <span className="gradient-text">Journey</span>?
@@ -152,7 +143,7 @@ const Process = () => {
             <Button href="/contact" size="lg" icon={ArrowRight}>
               Get Started Today
             </Button>
-          </GlassCard>
+          </div>
         </div>
       </section>
     </main>

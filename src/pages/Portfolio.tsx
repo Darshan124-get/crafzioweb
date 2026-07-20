@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { ExternalLink, Globe, Smartphone, Cpu, ImageOff, ChevronLeft, ChevronRight } from "lucide-react";
-import AnimatedBackground from "@/components/AnimatedBackground";
+import { ExternalLink, Globe, Smartphone, Cpu, ImageOff } from "lucide-react";
+
 import SectionHeading from "@/components/SectionHeading";
 import GlassCard from "@/components/GlassCard";
 
-const categories = ["All", "Mobile", "Web", "Website"];
+const categories = ["All", "Mobile", "Website"];
 
 const projects = [
   {
@@ -98,7 +98,7 @@ const projects = [
   },
   {
     title: "Portfolio Websites",
-    category: "Web",
+    category: "Website",
     description: "Professional portfolio websites showcasing client work and expertise.",
     image: "https://images.unsplash.com/photo-1460925895917-adf4ea918635?w=800&h=600&fit=crop",
     tags: ["React", "Next.js", "Tailwind CSS"],
@@ -122,7 +122,7 @@ const projects = [
   },
   {
     title: "Student Marks & Results Management",
-    category: "Web",
+    category: "Website",
     description: "Academic management system for tracking student marks and results with analytics.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
     tags: ["React", "PostgreSQL", "Charts"],
@@ -134,7 +134,6 @@ const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [imageErrors, setImageErrors] = useState(new Set());
   const [selectedProject, setSelectedProject] = useState(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handleImageError = (title: string) => {
     setImageErrors(prev => new Set([...prev, title]));
@@ -142,7 +141,6 @@ const Portfolio = () => {
 
   const handleProjectSelect = (project) => {
     setSelectedProject(project);
-    setCurrentImageIndex(0);
   };
 
   const filteredProjects = activeCategory === "All" 
@@ -151,7 +149,7 @@ const Portfolio = () => {
 
   return (
     <main className="page-transition pt-24">
-      <AnimatedBackground />
+
 
       {/* Hero Section */}
       <section className="relative py-12 md:py-20">
@@ -203,11 +201,10 @@ const Portfolio = () => {
             {filteredProjects.map((project, index) => (
               <div
                 key={project.title}
-                className="opacity-0 animate-fade-in-up group cursor-pointer"
-                style={{ animationDelay: `${index * 100}ms`, animationFillMode: "forwards" }}
+                className="group cursor-pointer"
                 onClick={() => handleProjectSelect(project)}
               >
-                <GlassCard className="overflow-hidden h-full hover:shadow-2xl transition-shadow duration-300">
+                <GlassCard hover3D={false} className="overflow-hidden h-full hover:shadow-2xl transition-shadow duration-300">
                   {/* Image */}
                   <div className="relative h-40 md:h-48 overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                     {!imageErrors.has(project.title) ? (
@@ -215,7 +212,7 @@ const Portfolio = () => {
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          className="w-full h-full object-cover"
                           onError={() => handleImageError(project.title)}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
@@ -231,14 +228,16 @@ const Portfolio = () => {
                     
                     {/* Category Badge */}
                     <div className="absolute top-2 md:top-4 left-2 md:left-4 flex items-center gap-1.5 md:gap-2 px-2 md:px-3 py-0.5 md:py-1 rounded-full glass-card text-xs z-10">
-                      <project.icon className="w-2.5 md:w-3 h-2.5 md:h-3 text-primary" />
+                      {project.category !== "Web" && project.category !== "Website" && (
+                        <project.icon className="w-2.5 md:w-3 h-2.5 md:h-3 text-primary" />
+                      )}
                       {project.category}
                     </div>
 
                     {/* View Project */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-background/50 backdrop-blur-sm z-20">
                       <button 
-                        className="flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full bg-primary text-primary-foreground font-medium text-xs md:text-sm hover:scale-105 transition-transform"
+                        className="flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full bg-primary text-primary-foreground font-medium text-xs md:text-sm"
                         onClick={(e) => {
                           e.stopPropagation();
                           handleProjectSelect(project);
@@ -269,11 +268,11 @@ const Portfolio = () => {
       {/* Project Details Modal */}
       {selectedProject && (
         <div 
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-2 md:p-4 animate-fade-in"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-2 md:p-4"
           onClick={() => setSelectedProject(null)}
         >
           <GlassCard 
-            className="max-w-2xl w-full max-h-[95vh] md:max-h-[90vh] overflow-y-auto p-4 md:p-8 animate-scale-in"
+            className="max-w-2xl w-full max-h-[95vh] md:max-h-[90vh] overflow-y-auto p-4 md:p-8"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -284,50 +283,19 @@ const Portfolio = () => {
               ✕
             </button>
 
-            {/* Project Image with Carousel */}
+            {/* Project Image */}
             <div className="relative h-48 md:h-64 -mx-4 md:-mx-8 -mt-4 md:-mt-8 mb-4 md:mb-6 rounded-t-lg overflow-hidden group bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
               {!imageErrors.has(selectedProject.title) ? (
                 <>
                   <div className="w-full h-full flex items-center justify-center">
                     <img
-                      src={selectedProject.images ? selectedProject.images[currentImageIndex] : selectedProject.image}
+                      src={selectedProject.image || selectedProject.images?.[0] || ""}
                       alt={selectedProject.title}
                       className="max-w-full max-h-full object-contain"
                       onError={() => handleImageError(selectedProject.title)}
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-                  
-                  {/* Navigation Arrows - Only show if multiple images */}
-                  {selectedProject.images && selectedProject.images.length > 1 && (
-                    <>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setCurrentImageIndex((prev) => (prev === 0 ? selectedProject.images.length - 1 : prev - 1));
-                        }}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-all hover:scale-110"
-                      >
-                        <ChevronLeft className="w-5 h-5" />
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setCurrentImageIndex((prev) => (prev === selectedProject.images.length - 1 ? 0 : prev + 1));
-                        }}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-all hover:scale-110"
-                      >
-                        <ChevronRight className="w-5 h-5" />
-                      </button>
-                    </>
-                  )}
-                  
-                  {/* Image Counter - if multiple images */}
-                  {selectedProject.images && selectedProject.images.length > 1 && (
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 px-3 py-1 rounded-full bg-black/50 text-white text-xs font-medium">
-                      {currentImageIndex + 1} / {selectedProject.images.length}
-                    </div>
-                  )}
                 </>
               ) : (
                 <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
@@ -341,7 +309,9 @@ const Portfolio = () => {
               {/* Header */}
               <div>
                 <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-                  <selectedProject.icon className="w-5 md:w-6 h-5 md:h-6 text-primary" />
+                  {selectedProject.category !== "Web" && selectedProject.category !== "Website" && (
+                    <selectedProject.icon className="w-5 md:w-6 h-5 md:h-6 text-primary" />
+                  )}
                   <span className="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
                     {selectedProject.category}
                   </span>
@@ -364,7 +334,7 @@ const Portfolio = () => {
               {/* Call to Action */}
               <div className="pt-3 md:pt-4 border-t border-border/50">
                 <button 
-                  className="w-full flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 md:py-3 rounded-full bg-gradient-to-r from-primary to-secondary text-primary-foreground font-medium text-sm md:text-base hover:scale-105 transition-transform"
+                  className="w-full flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 md:py-3 rounded-full bg-gradient-to-r from-primary to-secondary text-primary-foreground font-medium text-sm md:text-base"
                   onClick={() => setSelectedProject(null)}
                 >
                   Close Details

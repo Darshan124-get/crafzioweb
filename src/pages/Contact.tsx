@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, Github, Twitter, Linkedin, Instagram, CheckCircle } from "lucide-react";
-import AnimatedBackground from "@/components/AnimatedBackground";
+
 import GlassCard from "@/components/GlassCard";
 import Button from "@/components/Button";
 import { useToast } from "@/hooks/use-toast";
@@ -17,6 +17,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    service: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,11 +34,11 @@ const Contact = () => {
       description: "We'll get back to you as soon as possible.",
     });
 
-    setFormData({ name: "", email: "", message: "" });
+    setFormData({ name: "", email: "", service: "", message: "" });
     setIsSubmitting(false);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -46,7 +47,7 @@ const Contact = () => {
 
   return (
     <main className="page-transition pt-24">
-      <AnimatedBackground />
+
 
       {/* Hero Section */}
       <section className="relative py-12 md:py-20">
@@ -75,8 +76,8 @@ const Contact = () => {
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
             {/* Contact Form */}
-            <div className="opacity-0 animate-slide-in-left" style={{ animationFillMode: "forwards" }}>
-              <GlassCard className="p-6 md:p-8">
+            <div>
+              <GlassCard hover3D={false} className="p-6 md:p-8">
                 <h2 className="font-display text-xl md:text-2xl font-bold mb-4 md:mb-6">Send Us a Message</h2>
                 
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
@@ -113,6 +114,26 @@ const Contact = () => {
                   </div>
 
                   <div>
+                    <label htmlFor="service" className="block text-xs md:text-sm font-medium mb-2">
+                      Service Interested In
+                    </label>
+                    <select
+                      id="service"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base rounded-xl bg-muted border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                    >
+                      <option value="" disabled>Select a service...</option>
+                      <option value="Web Development">Web Development</option>
+                      <option value="Application Development">Application Development</option>
+                      <option value="CRM Development">CRM Development</option>
+                      <option value="E-Commerce Solutions">E-Commerce Solutions</option>
+                    </select>
+                  </div>
+
+                  <div>
                     <label htmlFor="message" className="block text-xs md:text-sm font-medium mb-2">
                       Your Message
                     </label>
@@ -142,8 +163,8 @@ const Contact = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-4 md:space-y-6 opacity-0 animate-slide-in-right" style={{ animationDelay: "200ms", animationFillMode: "forwards" }}>
-              <GlassCard className="p-6 md:p-8">
+            <div className="space-y-4 md:space-y-6">
+              <GlassCard hover3D={false} className="p-6 md:p-8">
                 <h2 className="font-display text-xl md:text-2xl font-bold mb-4 md:mb-6">Contact Information</h2>
                 
                 <div className="space-y-4 md:space-y-6">
@@ -186,7 +207,7 @@ const Contact = () => {
               </GlassCard>
 
               {/* Social Links */}
-              <GlassCard className="p-6 md:p-8">
+              <GlassCard hover3D={false} className="p-6 md:p-8">
                 <h3 className="font-display text-lg md:text-xl font-bold mb-3 md:mb-4">Follow Us</h3>
                 <div className="flex gap-2 md:gap-3">
                   {socials.map((social) => (
@@ -203,7 +224,7 @@ const Contact = () => {
               </GlassCard>
 
               {/* Map Placeholder */}
-              <GlassCard className="p-6 md:p-8 h-40 md:h-48 flex items-center justify-center">
+              <GlassCard hover3D={false} className="p-6 md:p-8 h-40 md:h-48 flex items-center justify-center">
                 <div className="text-center">
                   <MapPin className="w-6 md:w-8 h-6 md:h-8 text-primary mx-auto mb-2" />
                   <p className="text-xs md:text-sm text-muted-foreground">

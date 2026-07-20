@@ -9,8 +9,7 @@ const navLinks = [
   { name: "Technologies", path: "/technologies" },
   { name: "Process", path: "/process" },
   { name: "Portfolio", path: "/portfolio" },
-  { name: "Testimonials", path: "/testimonials" },
-  { name: "Founders", path: "/founders" },
+  { name: "Team Members", path: "/founders" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -56,15 +55,16 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
+            {navLinks.map((link, index) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg hover:bg-muted group ${
+                className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 rounded-lg hover:bg-muted ${
                   location.pathname === link.path
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
+                style={{ animationDelay: `${index * 50}ms` }}
               >
                 {link.name}
                 {location.pathname === link.path && (
@@ -75,12 +75,14 @@ const Navbar = () => {
           </div>
 
           {/* CTA Button */}
-          <Link
-            to="/contact"
-            className="hidden lg:flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-primary-foreground font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:scale-105"
-          >
-            Start Project
-          </Link>
+          <div className="hidden lg:flex items-center gap-4">
+            <Link
+              to="/contact"
+              className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-primary-foreground font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:scale-105"
+            >
+              Start Project
+            </Link>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -107,7 +109,7 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                className={`flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
                   location.pathname === link.path
                     ? "bg-primary/10 text-primary"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
