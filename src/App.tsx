@@ -16,6 +16,7 @@ import Portfolio from "./pages/Portfolio";
 import Founders from "./pages/Founders";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 import { ThemeProvider } from "@/components/ThemeProvider";
 
@@ -40,6 +41,7 @@ const App = () => (
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/founders" element={<Founders />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />

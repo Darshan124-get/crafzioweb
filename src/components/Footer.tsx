@@ -106,7 +106,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
-            <Link to="#" className="hover:text-primary transition-colors">
+            <Link to="/privacy" className="hover:text-primary transition-colors">
               Privacy Policy
             </Link>
             <Link to="#" className="hover:text-primary transition-colors">
