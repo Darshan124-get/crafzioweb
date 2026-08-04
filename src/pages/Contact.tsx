@@ -27,10 +27,10 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "621645e1-3d8d-42a6-861b-627ea5674226";
       
       if (!accessKey || accessKey === "YOUR_ACCESS_KEY_HERE") {
-        throw new Error("Web3Forms Access Key is not configured. Please set VITE_WEB3FORMS_ACCESS_KEY in your .env file.");
+        throw new Error("Web3Forms Access Key is not configured.");
       }
 
       const response = await fetch("https://api.web3forms.com/submit", {
