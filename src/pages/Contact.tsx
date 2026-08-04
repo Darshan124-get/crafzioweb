@@ -257,15 +257,7 @@ const Contact = () => {
                 </div>
               </GlassCard>
 
-              {/* Map Placeholder */}
-              <GlassCard hover3D={false} className="p-6 md:p-8 h-40 md:h-48 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-6 md:w-8 h-6 md:h-8 text-primary mx-auto mb-2" />
-                  <p className="text-xs md:text-sm text-muted-foreground">
-                    Interactive map coming soon
-                  </p>
-                </div>
-              </GlassCard>
+
             </div>
           </div>
         </div>
