@@ -26,16 +26,50 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+      
+      if (!accessKey || accessKey === "YOUR_ACCESS_KEY_HERE") {
+        throw new Error("Web3Forms Access Key is not configured. Please set VITE_WEB3FORMS_ACCESS_KEY in your .env file.");
+      }
 
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          subject: `New Contact Submission: ${formData.service}`,
+          service: formData.service,
+          message: formData.message,
+          from_name: "CrafZio Contact Form",
+        }),
+      });
 
-    setFormData({ name: "", email: "", service: "", message: "" });
-    setIsSubmitting(false);
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        toast({
+          title: "Message Sent!",
+          description: "We'll get back to you as soon as possible.",
+        });
+        setFormData({ name: "", email: "", service: "", message: "" });
+      } else {
+        throw new Error(result.message || "Failed to send message. Please try again later.");
+      }
+    } catch (error) {
+      toast({
+        title: "Error Sending Message",
+        description: error instanceof Error ? error.message : "Something went wrong.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
