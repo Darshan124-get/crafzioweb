@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Github, Twitter, Linkedin, Instagram, CheckCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Facebook, Twitter, Linkedin, Instagram, CheckCircle } from "lucide-react";
 
 import GlassCard from "@/components/GlassCard";
 import Button from "@/components/Button";
 import { useToast } from "@/hooks/use-toast";
 
 const socials = [
-  { icon: Github, href: "https://github.com/CRAFZIO?view_as=public", label: "GitHub" },
+  { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61591645697980", label: "Facebook" },
   { icon: Twitter, href: "https://x.com/CrafZio", label: "Twitter" },
   { icon: Linkedin, href: "https://www.linkedin.com/company/crafzio/", label: "LinkedIn" },
   { icon: Instagram, href: "https://www.instagram.com/crafzio.in?igsh=eDdjcWl5Z3gwbm5z", label: "Instagram" },
