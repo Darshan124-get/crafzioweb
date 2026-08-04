@@ -21,6 +21,7 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,10 +54,7 @@ const Contact = () => {
       const result = await response.json();
       
       if (response.ok && result.success) {
-        toast({
-          title: "Message Sent!",
-          description: "We'll get back to you as soon as possible.",
-        });
+        setShowSuccessModal(true);
         setFormData({ name: "", email: "", service: "", message: "" });
       } else {
         throw new Error(result.message || "Failed to send message. Please try again later.");
@@ -256,12 +254,53 @@ const Contact = () => {
                   ))}
                 </div>
               </GlassCard>
-
-
             </div>
           </div>
         </div>
       </section>
+
+      {/* Success Dialog Modal */}
+      {showSuccessModal && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4 animate-in fade-in duration-300"
+          onClick={() => setShowSuccessModal(false)}
+        >
+          <GlassCard 
+            hover3D={false}
+            className="max-w-md w-full p-8 text-center relative border border-primary/10 shadow-2xl animate-in zoom-in-95 duration-300"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setShowSuccessModal(false)}
+              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-muted hover:bg-primary/20 flex items-center justify-center transition-colors text-muted-foreground hover:text-foreground"
+            >
+              ✕
+            </button>
+
+            {/* Checkmark Animation Icon */}
+            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 shadow-[0_0_20px_rgba(59,130,246,0.1)]">
+              <CheckCircle className="w-12 h-12 text-primary animate-bounce" />
+            </div>
+
+            <h3 className="font-display text-2xl font-bold mb-3 text-foreground">
+              Message Sent!
+            </h3>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+              Your inquiry has been successfully received by CrafZio. 
+              Our team will review your project details and get back to you shortly via email.
+            </p>
+
+            <Button
+              onClick={() => setShowSuccessModal(false)}
+              size="lg"
+              className="w-full"
+            >
+              Back to Website
+            </Button>
+          </GlassCard>
+        </div>
+      )}
     </main>
   );
 };

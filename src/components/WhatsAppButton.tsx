@@ -11,8 +11,9 @@ const WhatsAppButton = () => {
       aria-label="Chat on WhatsApp"
       className="fixed bottom-6 right-6 z-50 group"
     >
-      {/* Pulse ring animation */}
-      <span className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-30" />
+      {/* Cascading double-pulse ripple effect */}
+      <span className="absolute inset-0 rounded-full bg-green-500 scale-100 opacity-75 animate-ping [animation-duration:2s]" />
+      <span className="absolute inset-0 rounded-full bg-green-500 scale-100 opacity-50 animate-ping [animation-duration:2s] [animation-delay:0.75s]" />
       
       {/* Button */}
       <div className="relative w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-green-500/50 hover:shadow-xl transition-all duration-300 hover:scale-110">
