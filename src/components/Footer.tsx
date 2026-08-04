@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Zap, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -28,8 +28,8 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-6">
             <Link to="/" className="flex items-center gap-2 group">
-              <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                <Zap className="w-6 h-6 text-primary-foreground" />
+              <div className="relative w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                <img src="/crafzio.jpeg" alt="CrafZio Logo" className="w-full h-full object-cover" />
               </div>
               <span className="font-display text-2xl font-bold gradient-text">
                 CrafZio
