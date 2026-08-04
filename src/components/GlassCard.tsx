@@ -1,7 +1,7 @@
-import { ReactNode, useRef, useState } from "react";
+import { HTMLAttributes, ReactNode, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
-interface GlassCardProps {
+interface GlassCardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   className?: string;
   hover3D?: boolean;
@@ -12,7 +12,11 @@ const GlassCard = ({
   children, 
   className, 
   hover3D = true,
-  glowColor = "primary" 
+  glowColor = "primary",
+  style,
+  onMouseMove,
+  onMouseLeave,
+  ...props
 }: GlassCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [transform, setTransform] = useState("");
@@ -53,9 +57,17 @@ const GlassCard = ({
       style={{
         transform: transform,
         transition: transform ? "transform 0.1s ease-out" : "transform 0.5s ease-out",
+        ...style
       }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={(e) => {
+        handleMouseMove(e);
+        onMouseMove?.(e);
+      }}
+      onMouseLeave={(e) => {
+        handleMouseLeave();
+        onMouseLeave?.(e);
+      }}
+      {...props}
     >
       {children}
     </div>
