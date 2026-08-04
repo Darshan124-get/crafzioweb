@@ -1,5 +1,12 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+
+const socials = [
+  { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61591645697980", label: "Facebook" },
+  { icon: Twitter, href: "https://x.com/CrafZio", label: "Twitter" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/crafzio/", label: "LinkedIn" },
+  { icon: Instagram, href: "https://www.instagram.com/crafzio.in?igsh=eDdjcWl5Z3gwbm5z", label: "Instagram" },
+];
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -39,6 +46,18 @@ const Footer = () => {
               Crafting digital experiences for the future. We transform ideas into 
               innovative solutions that drive business growth.
             </p>
+            <div className="flex gap-2 pt-2">
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  aria-label={social.label}
+                  className="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:glow-primary transition-all duration-300 hover:scale-110"
+                >
+                  <social.icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Quick Links */}
